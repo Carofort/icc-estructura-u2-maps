@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Ejercicios {
@@ -28,8 +29,32 @@ public class Ejercicios {
      * frecuencia.
      */
     public static boolean areAnagrams(String str1, String str2) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        System.out.println("Input: str1 = \"" + str1 + "\", str2 = \"" + str2 + "\"");
+        
+        if (str1.length() != str2.length()) {
+            System.out.println("Output: false");
+            System.out.println("Explicación: Las cadenas tienen diferentes longitudes.");
+            return false;
+        }
 
+        HashMap<Character, Integer> charCountMap = new HashMap<>();
+        
+        for (char c : str1.toCharArray()) {
+            charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+        }
+
+        for (char c : str2.toCharArray()) {
+            if (!charCountMap.containsKey(c) || charCountMap.get(c) == 0) {
+                System.out.println("Output: false");
+                System.out.println("Explicación: Las cadenas tienen diferentes caracteres o frecuencias.");
+                return false;
+            }
+            charCountMap.put(c, charCountMap.get(c) - 1);
+        }
+        
+        System.out.println("Output: true");
+        System.out.println("Explicación: Ambas cadenas tienen los mismos caracteres con la misma frecuencia.");
+        return true;
     }
 
     /*
@@ -48,6 +73,25 @@ public class Ejercicios {
      * Output: null
      */
     public int[] sumatoriaDeDos(int[] nums, int objetivo) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        System.out.println("Input: nums = " + Arrays.toString(nums) + ", objetivo = " + objetivo);
+        
+        HashMap<Integer, Integer> numMap = new HashMap<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            int complemento = objetivo - nums[i];
+            if (numMap.containsKey(complemento)) {
+                int[] result = new int[]{numMap.get(complemento), i};
+                System.out.println("Output: " + Arrays.toString(result));
+                System.out.println("Explicación: nums[" + result[0] + "] + nums[" 
+                                    + result[1] + "] == " + objetivo + ", devolvemos " 
+                                    + Arrays.toString(result) + ".");
+                return result;
+            }
+            numMap.put(nums[i], i);
+        }
+
+        System.out.println("Output: null");
+        System.out.println("Explicación: No hay dos números en el array cuya suma sea igual al objetivo.");
+        return null;
     }
 }

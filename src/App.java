@@ -1,3 +1,5 @@
+
+import java.util.Scanner;
 import controllers.Ejercicios;
 import controllers.EmpleadoContoller;
 import controllers.Mapa;
@@ -14,7 +16,7 @@ public class App {
         runEmpleadoExample();
 
         // Ejecuta los ejercicios de sumatoria y anagramas
-        //runEjerccios();
+        runEjerccios();
     }
 
     private static void runMapExample() {
@@ -34,11 +36,32 @@ public class App {
         empleadoContoller.displayLlaves();
         empleadoContoller.displayEmpleadosSinSet();
     }
-
-    /* 
+ 
     private static void runEjerccios() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        System.out.println("*****EJERCICIO DE ANAGRAMAS******");
+        Ejercicios ejercicios = new Ejercicios();
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Ingrese la primera palabra: ");
+        String str1 = scanner.nextLine();
+        System.out.println("Ingrese la segunda palabra: ");
+        String str2 = scanner.nextLine();
 
+        System.out.println(Ejercicios.areAnagrams(str1, str2));  
+        
+        System.out.println("*****EJERCICIO DE SUMATORIA******");
+        System.out.println("Ingrese el tamaño del array: ");
+        int n = scanner.nextInt();
+        int[] nums = new int[n];
+        System.out.println("Ingrese los elementos del array:");
+        for (int i = 0; i < n; i++) {
+            nums[i] = scanner.nextInt();
+        }
+        
+        System.out.println("Ingrese el objetivo: ");
+        int objetivo = scanner.nextInt();
+        ejercicios.sumatoriaDeDos(nums, objetivo);
+
+        scanner.close();
     }
-        */
 }
